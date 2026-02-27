@@ -1,9 +1,8 @@
 
 :root {
-  --bg: #1A1A1A;
-  --text: #F7F7F7;
-  --accent: #0F4C81;
-  --light: #E0E0E0;
+  --bg: #181A1B;
+  --text: #F5F5F5;
+  --muted: #B0B0B0;
 }
 
 * {
@@ -13,10 +12,10 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .container {
@@ -26,8 +25,8 @@ body {
 }
 
 header {
-  padding: 20px 0;
-  border-bottom: 1px solid #333;
+  padding: 24px 0;
+  border-bottom: 1px solid #2A2A2A;
 }
 
 nav {
@@ -39,27 +38,53 @@ nav {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 28px;
 }
 
 nav a {
-  color: var(--text);
   text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
 }
 
 .hero {
-  padding: 120px 0;
-  text-align: center;
+  padding: 120px 0 80px 0;
 }
 
-.content {
-  padding: 60px 0;
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.micro {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.section {
+  padding: 80px 0;
+  border-top: 1px solid #2A2A2A;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 18px;
+  color: var(--muted);
 }
 
 footer {
   text-align: center;
-  padding: 20px 0;
-  border-top: 1px solid #333;
-  font-size: 0.9rem;
-  color: #888;
+  padding: 40px 0;
+  border-top: 1px solid #2A2A2A;
+  color: #777;
 }
