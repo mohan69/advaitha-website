@@ -3,6 +3,7 @@
   --bg: #181A1B;
   --text: #F5F5F5;
   --muted: #B0B0B0;
+  --accent: #0F4C81;
 }
 
 * {
@@ -15,7 +16,7 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .container {
@@ -48,11 +49,11 @@ nav a {
 }
 
 .hero {
-  padding: 120px 0 80px 0;
+  padding: 140px 0 100px 0;
 }
 
 .hero h1 {
-  font-size: 2.8rem;
+  font-size: 3.2rem;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -66,20 +67,42 @@ nav a {
 .micro {
   font-size: 1rem;
   color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.impact {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-top: 20px;
 }
 
 .section {
-  padding: 80px 0;
+  padding: 100px 0;
   border-top: 1px solid #2A2A2A;
 }
 
 h1, h2 {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+h2 {
+  color: var(--accent);
 }
 
 p {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   color: var(--muted);
+}
+
+.layer {
+  margin-bottom: 40px;
+}
+
+.arrow {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--accent);
+  margin: 20px 0;
 }
 
 footer {
