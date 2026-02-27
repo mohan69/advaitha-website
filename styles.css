@@ -26,7 +26,7 @@ body {
 }
 
 header {
-  padding: 20px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #2A2A2A;
 }
 
@@ -37,7 +37,8 @@ header {
 }
 
 .logo-img {
-  height: 48px;
+  height: 72px;   /* increased for visibility */
+  width: auto;
 }
 
 nav ul {
@@ -96,17 +97,6 @@ h2 {
 p {
   margin-bottom: 20px;
   color: var(--muted);
-}
-
-.layer {
-  margin-bottom: 40px;
-}
-
-.arrow {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--accent);
-  margin: 20px 0;
 }
 
 footer {
