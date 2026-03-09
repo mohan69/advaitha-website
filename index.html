@@ -5,13 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advaitha | Powered by RightSense Technologies</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* All styles moved here for perfect loading */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #111; line-height: 1.6; overflow-x: hidden; }
+        #quantumCanvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
+        
+        /* Hero */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; letter-spacing: -1px; margin-bottom: 20px; }
+        .subtitle { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 40px auto; }
+        .btn { display: inline-block; padding: 15px 30px; background: #111; color: #FFF; text-decoration: none; border-radius: 4px; font-weight: 600; }
+
+        /* Sections */
+        section { padding: 100px 0; }
+        .about-section { background: #FFF; text-align: center; border-bottom: 1px solid #EEE; }
+        .mission-text { max-width: 800px; margin: 0 auto; font-size: 1.4rem; font-weight: 300; font-style: italic; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .card { background: #FFF; padding: 40px; border-radius: 8px; border: 1px solid #EEE; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+
+        /* Contact */
+        .contact-section { text-align: center; padding-bottom: 150px; }
+        .contact-details { margin-top: 30px; font-size: 1.2rem; }
+        .contact-details a { color: #0078FF; text-decoration: none; font-weight: 600; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        footer { text-align: center; padding: 40px; background: #111; color: #888; font-size: 0.9rem; }
+    </style>
 </head>
 <body>
     <canvas id="quantumCanvas"></canvas>
 
     <header class="hero">
-        <div class="container fade-in">
+        <div class="container">
             <h1>The Unified Enterprise.<br>Engineered by AI.</h1>
             <p class="subtitle">Dissolving the friction between data and decision through Governed Agentic AI. The nervous system for your manufacturing ecosystem.</p>
             <a href="#about" class="btn">Our Mission</a>
@@ -21,27 +52,25 @@
     <section id="about" class="about-section reveal">
         <div class="container">
             <h2>Our Mission</h2>
-            <p class="mission-text">
-                At <strong>RightSense Technologies Private Limited</strong>, our mission is to architect "Cognitive Harmony." We believe that enterprise intelligence should be non-dual—seamlessly integrated into the fabric of operations. We empower global manufacturing and IT sectors by collapsing complex data into singular, actionable truths, ensuring that every technological pulse serves a higher operational Dharma.
-            </p>
+            <p class="mission-text">At <strong>RightSense Technologies Private Limited</strong>, our mission is to architect "Cognitive Harmony." We believe that enterprise intelligence should be non-dual—seamlessly integrated into the fabric of operations.</p>
         </div>
     </section>
 
     <section id="services" class="services-section">
         <div class="container">
-            <h2 class="reveal">The Dharma of Data</h2>
+            <h2 class="reveal" style="text-align:center">The Dharma of Data</h2>
             <div class="grid">
                 <div class="card reveal">
                     <h3>Omniscient Supply Chain</h3>
-                    <p>Total visibility across your ERP, evaluating historical data and margin potential simultaneously to generate optimal tender responses.</p>
+                    <p>Total visibility across your ERP, evaluating historical data and margin potential simultaneously.</p>
                 </div>
                 <div class="card reveal">
                     <h3>Dharmic Data Governance</h3>
-                    <p>Ensuring every automated action within SAP or Oracle is strictly compliant with your enterprise's operational 'Dharma'.</p>
+                    <p>Ensuring every automated action is strictly compliant with your enterprise's operational 'Dharma'.</p>
                 </div>
                 <div class="card reveal">
                     <h3>Synchronized ECM</h3>
-                    <p>Instantly synchronize PLM updates with shop-floor realities, treating your business as one interconnected organism.</p>
+                    <p>Instantly synchronize PLM updates with shop-floor realities as one interconnected organism.</p>
                 </div>
             </div>
         </div>
@@ -50,7 +79,6 @@
     <section id="contact" class="contact-section reveal">
         <div class="container">
             <h2>Connect with the Architect</h2>
-            <p>Ready to collapse the wave of potential into operational reality?</p>
             <div class="contact-details">
                 <p><strong>RightSense Technologies Private Limited</strong></p>
                 <p>📧 <a href="mailto:mohan@rightsense.in">mohan@rightsense.in</a></p>
@@ -60,27 +88,18 @@
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Advaitha | A Strategic Initiative of <strong>RightSense Technologies Private Limited</strong></p>
-        </div>
+        <p>&copy; 2026 Advaitha | A Strategic Initiative of RightSense Technologies Private Limited</p>
     </footer>
 
     <script>
-        // Scroll Reveal Logic
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Quantum Background Fix
         const canvas = document.getElementById('quantumCanvas');
         const ctx = canvas.getContext('2d');
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         resize();
 
@@ -92,7 +111,7 @@
             if (mouse.x) {
                 ctx.beginPath();
                 ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 110, 255, 0.035)';
+                ctx.fillStyle = 'rgba(0, 110, 255, 0.04)';
                 ctx.fill();
             }
             requestAnimationFrame(animate);
