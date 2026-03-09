@@ -1,152 +1,39 @@
-/* Base Resets & Typography */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Add to your existing styles or replace */
+#quantumCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Reveal Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero Fade-in */
+.fade-in {
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ensure sections are clear to see the background */
+.hero, .services-section, .architecture-section {
+    background: transparent !important;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #FAFAFA; /* Clean, almost infinite white */
-    color: #111111;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Hero Section */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(135deg, #FAFAFA 0%, #EAEAEA 100%);
-}
-
-.hero h1 {
-    font-size: 4rem;
-    font-weight: 300;
-    letter-spacing: -1.5px;
-    margin-bottom: 20px;
-}
-
-.hero .subtitle {
-    font-size: 1.2rem;
-    color: #555;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-}
-
-.btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #111;
-    color: #FFF;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* Services Section */
-.services-section {
-    padding: 100px 0;
-    background-color: #FFF;
-}
-
-.services-section h2, .architecture-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-bottom: 60px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-}
-
-.card {
-    background: #FFF;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border: 1px solid #F0F0F0;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    border-color: #E0E0E0;
-}
-
-.card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.card p {
-    color: #666;
-}
-
-/* Architecture Section */
-.architecture-section {
-    padding: 100px 0;
     background-color: #FAFAFA;
-    text-align: center;
-}
-
-.arch-text {
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    font-size: 1.1rem;
-    color: #444;
-}
-
-.arch-features {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    flex-wrap: wrap;
-}
-
-.feature h4 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-}
-
-.feature p {
-    color: #666;
-    max-width: 300px;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 30px 0;
-    background-color: #111;
-    color: #888;
-    font-size: 0.9rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
 }
