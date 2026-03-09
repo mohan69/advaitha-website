@@ -1,54 +1,152 @@
-
-:root {
-  --bg: #141617;
-  --text: #F5F5F5;
-  --muted: #B0B0B0;
-  --accent: #0F4C81;
+/* Base Resets & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.8;
+    font-family: 'Inter', sans-serif;
+    background-color: #FAFAFA; /* Clean, almost infinite white */
+    color: #111111;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-.container { width: 90%; max-width: 1100px; margin: auto; }
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-header { padding: 12px 0; border-bottom: 1px solid #2A2A2A; }
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #FAFAFA 0%, #EAEAEA 100%);
+}
 
-.nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+}
 
-.logo-img { height: 72px; }
+.hero .subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
 
-nav ul { list-style: none; display: flex; gap: 28px; }
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #111;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
 
-nav a { text-decoration: none; color: var(--text); font-size: 1.05rem; font-weight: 500; }
+.btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-.hero { padding: 160px 0 110px 0; }
+/* Services Section */
+.services-section {
+    padding: 100px 0;
+    background-color: #FFF;
+}
 
-.hero h1 { font-size: 3.2rem; font-weight: 700; margin-bottom: 20px; }
+.services-section h2, .architecture-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 60px;
+}
 
-.subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 12px; }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
 
-.micro { font-size: 1rem; color: var(--muted); margin-bottom: 12px; }
+.card {
+    background: #FFF;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid #F0F0F0;
+}
 
-.impact { font-size: 1rem; color: var(--accent); margin-top: 20px; }
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: #E0E0E0;
+}
 
-.authority { margin-top: 20px; color: #CFCFCF; }
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
 
-.section { padding: 100px 0; border-top: 1px solid #2A2A2A; }
+.card p {
+    color: #666;
+}
 
-h1, h2 { margin-bottom: 24px; }
+/* Architecture Section */
+.architecture-section {
+    padding: 100px 0;
+    background-color: #FAFAFA;
+    text-align: center;
+}
 
-h2 { color: var(--accent); }
+.arch-text {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1rem;
+    color: #444;
+}
 
-p { margin-bottom: 20px; color: var(--muted); }
+.arch-features {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
 
-.layer { margin-bottom: 40px; }
+.feature h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
 
-.arrow { text-align: center; font-size: 2rem; color: var(--accent); margin: 20px 0; }
+.feature p {
+    color: #666;
+    max-width: 300px;
+}
 
-footer { text-align: center; padding: 40px 0; border-top: 1px solid #2A2A2A; color: #777; }
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background-color: #111;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
