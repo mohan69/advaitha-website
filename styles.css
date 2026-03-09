@@ -1,39 +1,23 @@
-/* Add to your existing styles or replace */
-#quantumCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    pointer-events: none;
+/* About Section Styles */
+.about-section {
+    padding: 120px 0;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-bottom: 1px solid #F0F0F0;
 }
 
-/* Reveal Animation Classes */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+.mission-text {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #333;
+    font-style: italic;
 }
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Hero Fade-in */
-.fade-in {
-    animation: fadeIn 2s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Ensure sections are clear to see the background */
-.hero, .services-section, .architecture-section {
-    background: transparent !important;
-}
-
-body {
-    background-color: #FAFAFA;
+/* Updated Contact Link Hover */
+.contact-details a:hover {
+    text-decoration: underline;
+    color: #0056b3;
 }
