@@ -6,26 +6,42 @@
     <title>Advaitha | Powered by RightSense Technologies</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* All styles moved here for perfect loading */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #111; line-height: 1.6; overflow-x: hidden; }
         #quantumCanvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
         .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
         
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 0; background: rgba(250, 250, 250, 0.8); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #EEE; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 600; letter-spacing: 1px; font-size: 1.2rem; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { text-decoration: none; color: #333; font-size: 0.9rem; font-weight: 400; transition: 0.3s; }
+        nav a:hover { color: #0078FF; }
+
         /* Hero */
         .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; letter-spacing: -1px; margin-bottom: 20px; }
         .subtitle { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 40px auto; }
-        .btn { display: inline-block; padding: 15px 30px; background: #111; color: #FFF; text-decoration: none; border-radius: 4px; font-weight: 600; }
+        .btn { display: inline-block; padding: 15px 30px; background: #111; color: #FFF; text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
         /* Sections */
-        section { padding: 100px 0; }
+        section { padding: 120px 0; }
         .about-section { background: #FFF; text-align: center; border-bottom: 1px solid #EEE; }
-        .mission-text { max-width: 800px; margin: 0 auto; font-size: 1.4rem; font-weight: 300; font-style: italic; }
+        .mission-text { max-width: 850px; margin: 0 auto; font-size: 1.4rem; font-weight: 300; font-style: italic; color: #444; }
         
+        /* Philosophy Section */
+        .philosophy-section { background: rgba(240, 245, 255, 0.3); }
+        .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 50px; margin-top: 50px; }
+        .phi-card h3 { color: #0078FF; margin-bottom: 15px; font-weight: 600; }
+        .phi-card p { font-size: 1.05rem; color: #555; text-align: justify; }
+
+        /* Services Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .card { background: #FFF; padding: 40px; border-radius: 8px; border: 1px solid #EEE; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .card { background: #FFF; padding: 40px; border-radius: 8px; border: 1px solid #EEE; transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: #0078FF; }
 
         /* Contact */
         .contact-section { text-align: center; padding-bottom: 150px; }
@@ -35,42 +51,77 @@
         /* Animations */
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        footer { text-align: center; padding: 40px; background: #111; color: #888; font-size: 0.9rem; }
+        footer { text-align: center; padding: 60px; background: #111; color: #888; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .philosophy-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <canvas id="quantumCanvas"></canvas>
 
+    <nav>
+        <div class="container">
+            <div class="logo">ADVAITHA</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#philosophy">Philosophy</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header class="hero">
         <div class="container">
             <h1>The Unified Enterprise.<br>Engineered by AI.</h1>
             <p class="subtitle">Dissolving the friction between data and decision through Governed Agentic AI. The nervous system for your manufacturing ecosystem.</p>
-            <a href="#about" class="btn">Our Mission</a>
+            <a href="#philosophy" class="btn">Our Philosophy</a>
         </div>
     </header>
 
     <section id="about" class="about-section reveal">
         <div class="container">
             <h2>Our Mission</h2>
-            <p class="mission-text">At <strong>RightSense Technologies Private Limited</strong>, our mission is to architect "Cognitive Harmony." We believe that enterprise intelligence should be non-dual—seamlessly integrated into the fabric of operations.</p>
+            <p class="mission-text">At <strong>RightSense Technologies Private Limited</strong>, we architect "Cognitive Harmony." We empower global enterprises by collapsing complex data into singular, actionable truths, ensuring technology is a seamless extension of human intent.</p>
+        </div>
+    </section>
+
+    <section id="philosophy" class="philosophy-section">
+        <div class="container">
+            <h2 class="reveal" style="text-align:center; font-size: 2.5rem; margin-bottom: 20px;">The Quantum-Advaithic Lens</h2>
+            <p class="reveal" style="text-align:center; max-width: 700px; margin: 0 auto 50px auto; color: #666;">We bridge ancient wisdom with modern physics to redefine how enterprise software thinks, acts, and evolves.</p>
+            
+            <div class="philosophy-grid">
+                <div class="phi-card reveal">
+                    <h3>Non-Dual Integration (Advaitha)</h3>
+                    <p>In Advaitha, the boundary between the observer and the observed disappears. We apply this to ERP and AI. Our agents are not "external tools" but are woven into the very fabric of your SAP/Oracle systems. When the software and the business operation become one, friction dissolves, and true efficiency emerges.</p>
+                </div>
+                <div class="phi-card reveal">
+                    <h3>The Observer Effect (Quantum)</h3>
+                    <p>Quantum mechanics teaches us that observation collapses potential into reality. Advaitha.tech provides "Augmented Awareness"—the deep visibility that allows managers to 'observe' thousands of supply chain variables simultaneously, collapsing complex uncertainties into the single most profitable decision.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="services" class="services-section">
         <div class="container">
-            <h2 class="reveal" style="text-align:center">The Dharma of Data</h2>
+            <h2 class="reveal" style="text-align:center; font-size: 2.5rem; margin-bottom: 50px;">The Dharma of Data</h2>
             <div class="grid">
                 <div class="card reveal">
                     <h3>Omniscient Supply Chain</h3>
-                    <p>Total visibility across your ERP, evaluating historical data and margin potential simultaneously.</p>
+                    <p>Total visibility across your ERP, evaluating historical data and margin potential simultaneously to automate high-stakes tender responses.</p>
                 </div>
                 <div class="card reveal">
                     <h3>Dharmic Data Governance</h3>
-                    <p>Ensuring every automated action is strictly compliant with your enterprise's operational 'Dharma'.</p>
+                    <p>Ensuring every automated action is strictly compliant with your enterprise's operational 'Dharma'—secure, traceable, and always ethical.</p>
                 </div>
                 <div class="card reveal">
                     <h3>Synchronized ECM</h3>
-                    <p>Instantly synchronize PLM updates with shop-floor realities as one interconnected organism.</p>
+                    <p>Instantly synchronize PLM updates with shop-floor realities. We treat your engineering and manufacturing as one interconnected organism.</p>
                 </div>
             </div>
         </div>
@@ -88,7 +139,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Advaitha | A Strategic Initiative of RightSense Technologies Private Limited</p>
+        <p>&copy; 2026 Advaitha | A Strategic Initiative of <strong>RightSense Technologies Private Limited</strong></p>
     </footer>
 
     <script>
@@ -110,7 +161,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (mouse.x) {
                 ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
+                ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
                 ctx.fillStyle = 'rgba(0, 110, 255, 0.04)';
                 ctx.fill();
             }
