@@ -20,15 +20,15 @@
         nav a { text-decoration: none; color: #333; font-size: 0.9rem; font-weight: 400; transition: 0.3s; }
         nav a:hover { color: #0078FF; }
 
-        /* Sections */
-        section { padding: 120px 0; }
+        /* Hero */
         .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
         h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; letter-spacing: -1px; margin-bottom: 20px; }
         .subtitle { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 40px auto; }
-        
         .btn { display: inline-block; padding: 18px 40px; background: #111; color: #FFF; text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,120,255,0.15); background: #0078FF; }
 
+        /* Sections */
+        section { padding: 120px 0; }
         .about-section { background: #FFF; text-align: center; border-bottom: 1px solid #EEE; }
         .mission-text { max-width: 850px; margin: 0 auto; font-size: 1.4rem; font-weight: 300; font-style: italic; color: #444; }
         
@@ -38,15 +38,14 @@
         .card { background: #FFF; padding: 40px; border-radius: 8px; border: 1px solid #EEE; transition: 0.5s; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: #0078FF; }
 
-        /* Quantum Audit Form (Brighter Button Tweak) */
-        .audit-section { background: #111; color: #FFF; border-radius: 12px; margin: 40px auto; padding: 80px 40px; text-align: center; }
-        .audit-section h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 300; }
+        /* Audit Section */
+        .audit-section { background: #111; color: #FFF; border-radius: 12px; margin: 40px auto; padding: 80px 40px; text-align: center; position: relative; }
         .audit-form { max-width: 600px; margin: 40px auto 0 auto; display: grid; gap: 20px; text-align: left; }
         .audit-form input, .audit-form select, .audit-form textarea { width: 100%; padding: 15px; border-radius: 4px; border: 1px solid #333; background: #222; color: #FFF; font-family: 'Inter', sans-serif; }
-        .audit-form label { font-size: 0.9rem; color: #AAA; }
-        
-        .audit-form .btn-submit { background: #0078FF; width: 100%; text-align: center; margin-top: 10px; }
-        .audit-form .btn-submit:hover { background: #0056b3; }
+        .btn-submit { background: #0078FF; width: 100%; }
+
+        /* Success Message Overlay */
+        #success-msg { display: none; padding: 20px; background: #0078FF; color: white; border-radius: 8px; margin-top: 20px; font-weight: 600; }
 
         /* Contact & Footer */
         .contact-section { text-align: center; }
@@ -54,7 +53,6 @@
         .contact-details a { color: #0078FF; text-decoration: none; font-weight: 600; }
         footer { text-align: center; padding: 60px; background: #000; color: #666; font-size: 0.85rem; }
 
-        /* Reveal Logic */
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
@@ -108,32 +106,21 @@
     <section id="audit" class="container reveal">
         <div class="audit-section">
             <h2>Request Your Quantum Audit</h2>
-            <p>Identify the hidden friction in your ERP ecosystems and collapse operational waste.</p>
+            <p>Identify the hidden friction in your ERP ecosystems.</p>
             
-            <form action="https://formspree.io/f/mqakovrz" method="POST" class="audit-form">
-                <div>
-                    <label>Full Name</label>
-                    <input type="text" name="name" placeholder="Mohan ..." required>
-                </div>
-                <div>
-                    <label>Enterprise Email</label>
-                    <input type="email" name="email" placeholder="name@company.in" required>
-                </div>
-                <div>
-                    <label>Current ERP System</label>
-                    <select name="erp">
-                        <option value="sap">SAP</option>
-                        <option value="oracle">Oracle EBS</option>
-                        <option value="infor">Infor</option>
-                        <option value="other">Other / Custom</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Biggest Operational Friction Point</label>
-                    <textarea name="message" rows="4" placeholder="e.g. Tender responses take too long..."></textarea>
-                </div>
+            <form id="audit-form" action="https://formspree.io/f/mqakovrz" method="POST" class="audit-form">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Enterprise Email" required>
+                <select name="erp">
+                    <option value="sap">SAP</option>
+                    <option value="oracle">Oracle EBS</option>
+                    <option value="infor">Infor</option>
+                    <option value="other">Other</option>
+                </select>
+                <textarea name="message" rows="4" placeholder="Biggest Operational Friction Point"></textarea>
                 <button type="submit" class="btn btn-submit">Begin the Audit</button>
             </form>
+            <div id="success-msg">The Observation Has Begun. Check your inbox soon.</div>
         </div>
     </section>
 
@@ -153,6 +140,27 @@
     </footer>
 
     <script>
+        // Form Submission Logic (Free Tier Workaround)
+        const form = document.getElementById("audit-form");
+        const successMsg = document.getElementById("success-msg");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                form.style.display = "none";
+                successMsg.style.display = "block";
+            } else {
+                alert("Something went wrong. Please email mohan@rightsense.in directly.");
+            }
+        });
+
+        // Background & Animation Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
@@ -166,7 +174,6 @@
 
         let mouse = { x: null, y: null };
         window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (mouse.x) {
