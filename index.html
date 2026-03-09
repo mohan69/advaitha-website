@@ -8,62 +8,82 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <canvas id="quantumCanvas"></canvas>
 
     <header class="hero">
-        <div class="container">
+        <div class="container fade-in">
             <h1>The Unified Enterprise.<br>Engineered by AI.</h1>
-            <p class="subtitle">Experience Governed Agentic AI that dissolves the friction between data and decision. We act as the nervous system for your manufacturing and ERP ecosystems.</p>
+            <p class="subtitle">Dissolving the friction between data and decision through Governed Agentic AI. The nervous system for your manufacturing ecosystem.</p>
             <a href="#services" class="btn">Explore Augmented Awareness</a>
         </div>
     </header>
 
     <section id="services" class="services-section">
         <div class="container">
-            <h2>The Dharma of Data</h2>
+            <h2 class="reveal">The Dharma of Data</h2>
             <div class="grid">
-                
-                <div class="card">
+                <div class="card reveal">
                     <h3>Omniscient Supply Chain</h3>
-                    <p>Move beyond manual tender responses. Our AI agents provide total visibility across your ERP, evaluating historical data, current inventory, and margin potential simultaneously to generate optimal responses in real-time.</p>
+                    <p>Total visibility across your ERP, evaluating historical data and margin potential simultaneously to generate optimal tender responses.</p>
                 </div>
-
-                <div class="card">
+                <div class="card reveal">
                     <h3>Dharmic Data Governance</h3>
-                    <p>True intelligence requires absolute integrity. Our agents ensure that every automated action within SAP, Oracle, or Infor is strictly compliant with your enterprise's operational rules—secure, traceable, and ethical.</p>
+                    <p>Ensuring every automated action within SAP or Oracle is strictly compliant with your enterprise's operational 'Dharma'.</p>
                 </div>
-
-                <div class="card">
+                <div class="card reveal">
                     <h3>Synchronized ECM</h3>
-                    <p>When an engineering change occurs, the entire enterprise must adapt instantly. We deploy agents that synchronize PLM updates with shop-floor realities, treating your business as one interconnected organism.</p>
+                    <p>Instantly synchronize PLM updates with shop-floor realities, treating your business as one interconnected organism.</p>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section class="architecture-section">
-        <div class="container">
+        <div class="container reveal">
             <h2>Quantum-Inspired Decision Velocity</h2>
-            <p class="arch-text">Traditional enterprise architecture relies on rigid, linear logic. Advaitha leverages <strong>Superposition States</strong>. Our agents evaluate thousands of procurement, supply chain, and engineering scenarios simultaneously before 'collapsing' the data into the single most efficient and profitable action.</p>
-            
-            <div class="arch-features">
-                <div class="feature">
-                    <h4>Zero-Point UI</h4>
-                    <p>Extreme simplicity on the frontend, hiding massive intelligence on the backend.</p>
-                </div>
-                <div class="feature">
-                    <h4>Non-Dual Integration</h4>
-                    <p>We don't sit "on top" of your ERP; we weave directly into the fabric of your systems.</p>
-                </div>
-            </div>
+            <p class="arch-text">Leveraging <strong>Superposition States</strong> to evaluate thousands of scenarios before 'collapsing' the data into the single most efficient action.</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Advaitha.tech. All rights reserved. | The Conscious Enterprise</p>
+            <p>&copy; 2026 Advaitha.tech | The Conscious Enterprise</p>
         </div>
     </footer>
 
+    <script>
+        // Reveal on Scroll Logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Simple Quantum Background Effect
+        const canvas = document.getElementById('quantumCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let mouse = { x: null, y: null };
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (mouse.x) {
+                ctx.beginPath();
+                ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 100, 255, 0.02)';
+                ctx.fill();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
