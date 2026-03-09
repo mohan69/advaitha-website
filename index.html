@@ -5,205 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advaitha | Powered by RightSense Technologies</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #111; line-height: 1.6; overflow-x: hidden; }
-        #quantumCanvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
-        
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; padding: 20px 0; background: rgba(250, 250, 250, 0.8); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #EEE; }
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 600; letter-spacing: 1px; font-size: 1.2rem; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { text-decoration: none; color: #333; font-size: 0.9rem; font-weight: 400; transition: 0.3s; }
-        nav a:hover { color: #0078FF; }
-
-        /* Hero */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-        h1 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; letter-spacing: -1px; margin-bottom: 20px; }
-        .subtitle { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 40px auto; }
-        .btn { display: inline-block; padding: 18px 40px; background: #111; color: #FFF; text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,120,255,0.15); background: #0078FF; }
-
-        /* Sections */
-        section { padding: 120px 0; }
-        .about-section { background: #FFF; text-align: center; border-bottom: 1px solid #EEE; }
-        .mission-text { max-width: 850px; margin: 0 auto; font-size: 1.4rem; font-weight: 300; font-style: italic; color: #444; }
-        
-        /* Philosophy & Services */
-        .philosophy-section { background: rgba(240, 245, 255, 0.3); }
-        .philosophy-grid, .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
-        .card { background: #FFF; padding: 40px; border-radius: 8px; border: 1px solid #EEE; transition: 0.5s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: #0078FF; }
-
-        /* Audit Section */
-        .audit-section { background: #111; color: #FFF; border-radius: 12px; margin: 40px auto; padding: 80px 40px; text-align: center; position: relative; }
-        .audit-form { max-width: 600px; margin: 40px auto 0 auto; display: grid; gap: 20px; text-align: left; }
-        .audit-form input, .audit-form select, .audit-form textarea { width: 100%; padding: 15px; border-radius: 4px; border: 1px solid #333; background: #222; color: #FFF; font-family: 'Inter', sans-serif; }
-        .btn-submit { background: #0078FF; width: 100%; }
-
-        /* Success Message Overlay */
-        #success-msg { display: none; padding: 20px; background: #0078FF; color: white; border-radius: 8px; margin-top: 20px; font-weight: 600; }
-
-        /* Contact & Footer */
-        .contact-section { text-align: center; }
-        .contact-details { margin-top: 30px; font-size: 1.2rem; }
-        .contact-details a { color: #0078FF; text-decoration: none; font-weight: 600; }
-        footer { text-align: center; padding: 60px; background: #000; color: #666; font-size: 0.85rem; }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <canvas id="quantumCanvas"></canvas>
 
     <nav>
-        <div class="container">
-            <div class="logo">ADVAITHA</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#audit">Quantum Audit</a></li>
-                <li><a href="#contact">Contact</a></li>
+        <div class="container navbar">
+            <div class="logo">
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="#111" stroke-width="6"/>
+                    <path d="M25 50C25 63.8071 36.1929 75 50 75C63.8071 75 75 63.8071 75 50C75 36.1929 63.8071 25 50 25C36.1929 25 25 36.1929 25 50Z" fill="#0078FF" fill-opacity="0.2"/>
+                    <circle cx="50" cy="50" r="8" fill="#111"/>
+                    <path d="M50 10V25M50 75V90M90 50H75M25 50H10" stroke="#111" stroke-width="4"/>
+                </svg>
+                <span>ADVAITHA</span>
+            </div>
+            <ul id="navLinks">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#philosophy" onclick="toggleMenu()">Philosophy</a></li>
+                <li><a href="#audit" onclick="toggleMenu()">Quantum Audit</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
             </ul>
+            <div class="menu-toggle" id="mobileMenuToggle" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="container">
+        <div class="container fade-in">
             <h1>The Unified Enterprise.<br>Engineered by AI.</h1>
-            <p class="subtitle">Dissolving the friction between data and decision through Governed Agentic AI.</p>
+            <p class="subtitle">Experience Governed Agentic AI that dissolves the friction between data and decision.</p>
             <a href="#audit" class="btn">Request a Quantum Audit</a>
         </div>
     </header>
 
-    <section id="about" class="about-section reveal">
-        <div class="container">
-            <h2>Our Mission</h2>
-            <p class="mission-text">At <strong>RightSense Technologies Private Limited</strong>, we architect "Cognitive Harmony"—collapsing complex data into actionable truths.</p>
-        </div>
-    </section>
-
-    <section id="philosophy" class="philosophy-section">
-        <div class="container">
-            <h2 class="reveal" style="text-align:center;">The Quantum-Advaithic Lens</h2>
-            <div class="philosophy-grid">
-                <div class="card reveal">
-                    <h3 style="color:#0078FF; margin-bottom:15px;">Non-Dual Integration</h3>
-                    <p>Software and operation are not separate. We weave AI into the fabric of your ERP, creating a single, frictionless organism.</p>
-                </div>
-                <div class="card reveal">
-                    <h3 style="color:#0078FF; margin-bottom:15px;">The Observer Effect</h3>
-                    <p>Deep visibility collapses uncertainty. We help you observe thousands of variables to manifest the most profitable actions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="audit" class="container reveal">
-        <div class="audit-section">
-            <h2>Request Your Quantum Audit</h2>
-            <p>Identify the hidden friction in your ERP ecosystems.</p>
-            
-            <form id="audit-form" action="https://formspree.io/f/xkoqovbo" method="POST" class="audit-form">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Enterprise Email" required>
-                <select name="erp">
-                    <option value="sap">SAP</option>
-                    <option value="oracle">Oracle EBS</option>
-                    <option value="infor">Infor</option>
-                    <option value="other">Other</option>
-                </select>
-                <textarea name="message" rows="4" placeholder="Biggest Operational Friction Point"></textarea>
-                <button type="submit" class="btn btn-submit">Begin the Audit</button>
-            </form>
-            <div id="success-msg">The Observation Has Begun. Check your inbox soon.</div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section reveal">
-        <div class="container">
-            <h2>Connect with the Architect</h2>
-            <div class="contact-details">
-                <p><strong>RightSense Technologies Private Limited</strong></p>
-                <p>📧 <a href="mailto:mohan@rightsense.in">mohan@rightsense.in</a></p>
-                <p>📞 <a href="tel:+919845543804">+91 98455 43804</a></p>
-            </div>
-        </div>
-    </section>
-
     <footer>
-        <p>&copy; 2026 Advaitha | A Strategic Initiative of <strong>RightSense Technologies Private Limited</strong></p>
+        <div class="container">
+            <p>&copy; 2026 Advaitha | A Strategic Initiative of RightSense Technologies Private Limited</p>
+        </div>
     </footer>
-<script>
-    const form = document.getElementById("audit-form");
-    const successMsg = document.getElementById("success-msg");
-    const submitBtn = form.querySelector(".btn-submit");
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        
-        submitBtn.innerText = "Collapsing Potential...";
-        submitBtn.disabled = true;
-
-        const data = new FormData(form);
-        
-        try {
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                // The wave has collapsed into success
-                form.style.display = "none";
-                successMsg.style.display = "block";
-                successMsg.style.padding = "40px";
-                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                const result = await response.json();
-                throw new Error(result.error || "Connection error");
-            }
-        } catch (error) {
-            console.error("Submission error:", error);
-            // Alert user if the ID is still the placeholder
-            alert("Connection initialization required. Please verify your Form ID in the code or email mohan@rightsense.in directly.");
-            submitBtn.innerText = "Begin the Audit";
-            submitBtn.disabled = false;
-        }
-    });
-
-    // Intersection Observer for Scroll Animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Quantum Mouse Background
-    const canvas = document.getElementById('quantumCanvas');
-    const ctx = canvas.getContext('2d');
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let mouse = { x: null, y: null };
-    window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        if (mouse.x) {
-            ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(0, 110, 255, 0.04)';
-            ctx.fill();
-        }
-        requestAnimationFrame(animate);
-    }
-    animate();
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
