@@ -108,7 +108,7 @@
             <h2>Request Your Quantum Audit</h2>
             <p>Identify the hidden friction in your ERP ecosystems.</p>
             
-            <form id="audit-form" action="https://formspree.io/f/mqakovrz" method="POST" class="audit-form">
+            <form id="audit-form" action="https://formspree.io/f/xkoqovbo" method="POST" class="audit-form">
                 <input type="text" name="name" placeholder="Full Name" required>
                 <input type="email" name="email" placeholder="Enterprise Email" required>
                 <select name="erp">
@@ -159,29 +159,31 @@
             });
 
             if (response.ok) {
-                // Success State
+                // The wave has collapsed into success
                 form.style.display = "none";
                 successMsg.style.display = "block";
-                successMsg.scrollIntoView({ behavior: 'smooth' });
+                successMsg.style.padding = "40px";
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                // Specific error handling for "Form Not Found"
                 const result = await response.json();
                 throw new Error(result.error || "Connection error");
             }
         } catch (error) {
             console.error("Submission error:", error);
-            alert("The connection to the Audit server is still being initialized. Please ensure your Form ID is correct or email mohan@rightsense.in.");
+            // Alert user if the ID is still the placeholder
+            alert("Connection initialization required. Please verify your Form ID in the code or email mohan@rightsense.in directly.");
             submitBtn.innerText = "Begin the Audit";
             submitBtn.disabled = false;
         }
     });
 
-    // Background & Animation Logic
+    // Intersection Observer for Scroll Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Quantum Mouse Background
     const canvas = document.getElementById('quantumCanvas');
     const ctx = canvas.getContext('2d');
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
