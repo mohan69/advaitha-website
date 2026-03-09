@@ -138,53 +138,67 @@
     <footer>
         <p>&copy; 2026 Advaitha | A Strategic Initiative of <strong>RightSense Technologies Private Limited</strong></p>
     </footer>
+<script>
+    const form = document.getElementById("audit-form");
+    const successMsg = document.getElementById("success-msg");
+    const submitBtn = form.querySelector(".btn-submit");
 
-    <script>
-        // Form Submission Logic (Free Tier Workaround)
-        const form = document.getElementById("audit-form");
-        const successMsg = document.getElementById("success-msg");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        // Visual feedback: Change button text during "Observation"
+        submitBtn.innerText = "Collapsing Potential...";
+        submitBtn.disabled = true;
 
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const data = new FormData(form);
+        const data = new FormData(form);
+        
+        try {
             const response = await fetch(form.action, {
                 method: "POST",
                 body: data,
                 headers: { 'Accept': 'application/json' }
             });
+
             if (response.ok) {
                 form.style.display = "none";
                 successMsg.style.display = "block";
+                successMsg.scrollIntoView({ behavior: 'smooth' });
             } else {
-                alert("Something went wrong. Please email mohan@rightsense.in directly.");
+                throw new Error('Formspree rejection');
             }
-        });
-
-        // Background & Animation Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        const canvas = document.getElementById('quantumCanvas');
-        const ctx = canvas.getContext('2d');
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize);
-        resize();
-
-        let mouse = { x: null, y: null };
-        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (mouse.x) {
-                ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 110, 255, 0.04)';
-                ctx.fill();
-            }
-            requestAnimationFrame(animate);
+        } catch (error) {
+            // Fallback: If AJAX fails, try the standard browser submission
+            console.log("AJAX failed, trying standard post...");
+            form.submit(); 
         }
-        animate();
-    </script>
+    });
+
+    // Background & Animation Logic
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const canvas = document.getElementById('quantumCanvas');
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let mouse = { x: null, y: null };
+    window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (mouse.x) {
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 110, 255, 0.04)';
+            ctx.fill();
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+
 </body>
 </html>
