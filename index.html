@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advaitha | Powered by RightSense Technologies</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2242%22 stroke=%22%23111%22 stroke-width=%224%22 fill=%22none%22 opacity=%220.2%22/><path d=%22M20 50 Q 35 20, 50 50 T 80 50%22 stroke=%22%230078FF%22 stroke-width=%228%22 fill=%22none%22/><circle cx=%2250%22 cy=%2250%22 r=%2210%22 fill=%22%23111%22/></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Consistency */
         :root { --primary: #0078FF; --bg: #FAFAFA; --text: #111; --card-bg: #FFF; }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
@@ -16,54 +17,57 @@
         #quantumCanvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
         .container { width: 90%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
 
-        /* Navigation Fixes for Mobile */
+        /* Navigation */
         nav { position: fixed; top: 0; width: 100%; padding: 15px 0; background: rgba(250, 250, 250, 0.85); backdrop-filter: blur(12px); z-index: 100; border-bottom: 1px solid #EEE; }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        
-        /* THE LOGO SVG */
         .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; color: var(--text); text-decoration: none; }
         .logo svg { width: 32px; height: 32px; }
 
-        nav ul { display: flex; list-style: none; gap: 25px; transition: 0.3s; }
+        nav ul { display: flex; list-style: none; gap: 25px; transition: 0.3s ease-in-out; }
         nav a { text-decoration: none; color: #444; font-size: 0.9rem; font-weight: 400; transition: 0.2s; }
         nav a:hover { color: var(--primary); }
 
-        /* Mobile Menu Toggle */
-        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .menu-toggle span { width: 25px; height: 2px; background: var(--text); transition: 0.3s; }
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 5px; }
+        .menu-toggle span { width: 22px; height: 2px; background: var(--text); transition: 0.3s; }
 
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
-            nav ul { position: fixed; top: 65px; left: -100%; width: 100%; height: 100vh; background: var(--bg); flex-direction: column; align-items: center; padding-top: 50px; gap: 40px; }
+            nav ul { position: fixed; top: 62px; left: -100%; width: 100%; height: 100vh; background: var(--bg); flex-direction: column; align-items: center; padding-top: 60px; gap: 35px; box-shadow: 10px 0 20px rgba(0,0,0,0.05); }
             nav ul.active { left: 0; }
         }
 
         /* Hero */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 60px; }
-        h1 { font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 300; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        h1 { font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 300; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
         .subtitle { font-size: clamp(1rem, 4vw, 1.2rem); color: #555; max-width: 650px; margin: 0 auto 40px; }
         .btn { display: inline-block; padding: 16px 36px; background: var(--text); color: #FFF; text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
         .btn:hover { background: var(--primary); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,120,255,0.2); }
 
-        /* Content Sections */
+        /* General Sections */
         section { padding: 100px 0; }
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        h2 { font-size: 2rem; font-weight: 300; margin-bottom: 40px; text-align: center; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { background: var(--card-bg); padding: 40px; border-radius: 8px; border: 1px solid #EEE; transition: 0.4s; }
-        .card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
 
         /* Architecture Section */
-        .arch-section { background: #F4F7FF; }
-        .arch-visual { background: #FFF; border-radius: 12px; padding: 40px; border: 1px dashed #CCC; text-align: center; margin-top: 30px; }
+        .arch-section { background: #F4F7FF; border-top: 1px solid #EEE; border-bottom: 1px solid #EEE; }
+        .arch-visual { background: #FFF; border-radius: 12px; padding: 50px 30px; border: 1px dashed #BBB; text-align: center; max-width: 800px; margin: 0 auto; }
+        .arch-tag { display: inline-block; padding: 5px 12px; background: var(--primary); color: white; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; }
 
-        /* Audit Form */
-        .audit-container { background: #111; color: #FFF; padding: 60px 30px; border-radius: 12px; text-align: center; }
+        /* Form */
+        .audit-container { background: #111; color: #FFF; padding: 80px 40px; border-radius: 16px; text-align: center; }
         .audit-form { max-width: 500px; margin: 40px auto 0; text-align: left; display: grid; gap: 15px; }
-        .audit-form input, .audit-form select, .audit-form textarea { width: 100%; padding: 12px; background: #222; border: 1px solid #333; color: #FFF; border-radius: 4px; }
-        #success-msg { display: none; color: var(--primary); font-weight: 600; margin-top: 20px; }
+        .audit-form label { font-size: 0.8rem; color: #888; margin-bottom: -10px; }
+        .audit-form input, .audit-form select, .audit-form textarea { width: 100%; padding: 14px; background: #1A1A1A; border: 1px solid #333; color: #FFF; border-radius: 4px; font-family: inherit; }
+        .audit-form input:focus { border-color: var(--primary); outline: none; }
+        #success-msg { display: none; color: var(--primary); font-weight: 600; margin-top: 30px; font-size: 1.2rem; }
 
+        /* Reveal Animation */
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        footer { padding: 50px; text-align: center; font-size: 0.85rem; color: #888; border-top: 1px solid #EEE; }
+        
+        footer { padding: 60px; text-align: center; font-size: 0.85rem; color: #888; }
     </style>
 </head>
 <body>
@@ -83,10 +87,10 @@
                 <span></span><span></span><span></span>
             </div>
             <ul id="nav-list">
-                <li><a href="#about">About</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#architecture">Architecture</a></li>
-                <li><a href="#audit">Quantum Audit</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#philosophy" onclick="closeMenu()">Philosophy</a></li>
+                <li><a href="#architecture" onclick="closeMenu()">Architecture</a></li>
+                <li><a href="#audit" onclick="closeMenu()">Quantum Audit</a></li>
             </ul>
         </div>
     </nav>
@@ -94,31 +98,42 @@
     <header class="hero container reveal">
         <div>
             <h1>The Unified Enterprise.<br>Engineered by AI.</h1>
-            <p class="subtitle">Dissolving the friction between data and decision through Governed Agentic AI. The nervous system for your manufacturing ecosystem.</p>
+            <p class="subtitle">Dissolving the friction between data and decision through Governed Agentic AI. Architected for the modern manufacturing ecosystem.</p>
             <a href="#audit" class="btn">Request a Quantum Audit</a>
         </div>
     </header>
 
+    <section id="about" class="container reveal">
+        <h2>About Advaitha</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.2rem; font-weight: 300;">
+            A strategic initiative by <strong>RightSense Technologies Private Limited</strong>, Advaitha represents the pinnacle of Non-Dual systems architecture—where business logic and artificial intelligence become one.
+        </p>
+    </section>
+
     <section id="philosophy" class="container">
-        <h2 class="reveal" style="text-align:center;">Philosophy</h2>
         <div class="card-grid">
             <div class="card reveal">
                 <h3 style="color:var(--primary); margin-bottom:15px;">Non-Dual Integration</h3>
-                <p>We believe software shouldn't be a "layer" on top of business, but an inseparable part of it. Advaitha integrates AI agents directly into your ERP core.</p>
+                <p>Most AI is a "bolt-on." Advaitha is built-in. We weave autonomous agents directly into your ERP core (SAP, Oracle, Infor) to eliminate the gap between information and execution.</p>
             </div>
             <div class="card reveal">
-                <h3 style="color:var(--primary); margin-bottom:15px;">Quantum Observation</h3>
-                <p>By observing thousands of operational variables, our AI collapses the wave of possibilities into the single most efficient path for your supply chain.</p>
+                <h3 style="color:var(--primary); margin-bottom:15px;">The Observer Effect</h3>
+                <p>Unobserved data is wasted potential. Our AI observes thousands of variables across your supply chain, collapsing complex possibilities into the single most profitable action.</p>
             </div>
         </div>
     </section>
 
     <section id="architecture" class="arch-section">
         <div class="container">
-            <h2 class="reveal" style="text-align:center;">System Architecture</h2>
+            <h2 class="reveal">System Architecture</h2>
             <div class="arch-visual reveal">
-                <p style="color:#666; margin-bottom: 20px;"><strong>Governed Agentic Flow</strong></p>
-                <p>Advaitha acts as a Secure Cognitive Bridge. Our agents use READ-ONLY observation to analyze Oracle/SAP data, compute margin-optimized actions, and present them for human approval (Governed Agency).</p>
+                <span class="arch-tag">Secure Cognitive Bridge</span>
+                <h3 style="margin-bottom: 15px; font-weight: 400;">Governed Agentic AI Flow</h3>
+                <p style="color:#666; font-size: 0.95rem;">
+                    Advaitha uses a Read-Only Observation Layer to pull real-time telemetry from your ERP backend. 
+                    Our proprietary agents simulate outcomes in a secure sandbox before presenting 
+                    vetted, margin-optimized recommendations for human final-approval.
+                </p>
             </div>
         </div>
     </section>
@@ -126,74 +141,91 @@
     <section id="audit" class="container reveal">
         <div class="audit-container">
             <h2>Request Your Quantum Audit</h2>
-            <p>Uncover the friction points in your ERP ecosystem.</p>
+            <p style="opacity: 0.8;">Identify the hidden friction points in your enterprise nervous system.</p>
+            
             <form id="audit-form" action="https://formspree.io/f/xkoqovbo" method="POST" class="audit-form">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Enterprise Email" required>
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+                
+                <label>Work Email</label>
+                <input type="email" name="email" required>
+                
+                <label>Primary ERP System</label>
                 <select name="erp">
-                    <option value="sap">SAP</option>
-                    <option value="oracle">Oracle EBS</option>
-                    <option value="other">Other ERP</option>
+                    <option value="sap">SAP S/4HANA</option>
+                    <option value="oracle">Oracle EBS / Cloud</option>
+                    <option value="infor">Infor LN / M3</option>
+                    <option value="other">Other Enterprise System</option>
                 </select>
-                <textarea name="message" rows="4" placeholder="Describe your biggest data friction..."></textarea>
-                <button type="submit" class="btn">Begin Audit</button>
+                
+                <label>Biggest Data Friction Point</label>
+                <textarea name="message" rows="4" placeholder="e.g. It takes 3 days to consolidate inventory reports..."></textarea>
+                
+                <button type="submit" class="btn">Begin the Audit</button>
             </form>
-            <div id="success-msg">The Observation Has Begun. Check your inbox soon.</div>
+            <div id="success-msg">The Observation Has Begun. <br><span style="font-weight: 300; font-size: 0.9rem; color: #AAA;">We will reach out to schedule your analysis within 48 hours.</span></div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 Advaitha | A Strategic Initiative of <strong>RightSense Technologies Private Limited</strong></p>
+        <p style="margin-top: 10px; opacity: 0.5;">Bengaluru, India</p>
     </footer>
 
     <script>
-        // Mobile Toggle Logic
+        // Mobile Navigation
         const toggle = document.getElementById('mobile-toggle');
         const navList = document.getElementById('nav-list');
         toggle.onclick = () => navList.classList.toggle('active');
+        function closeMenu() { navList.classList.remove('active'); }
 
-        // Form Logic
+        // Form Submission Logic
         const form = document.getElementById("audit-form");
         const successMsg = document.getElementById("success-msg");
-
         form.onsubmit = async (e) => {
             e.preventDefault();
             const btn = form.querySelector('button');
-            btn.innerText = "Processing...";
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-                form.style.display = "none";
-                successMsg.style.display = "block";
-            } else {
-                alert("Submission failed. Please email mohan@rightsense.in");
-                btn.innerText = "Begin Audit";
+            const originalText = btn.innerText;
+            btn.innerText = "Collapsing Wave...";
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    form.style.display = "none";
+                    successMsg.style.display = "block";
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else { throw new Error(); }
+            } catch (err) {
+                alert("Connection error. Please email mohan@rightsense.in directly.");
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         };
 
-        // Scroll Animations
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Quantum Mouse Effect
+        // Background Animation
         const canvas = document.getElementById('quantumCanvas');
         const ctx = canvas.getContext('2d');
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.onresize = resize; resize();
-
         let mouse = { x: null, y: null };
         window.onmousemove = (e) => { mouse.x = e.x; mouse.y = e.y; };
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (mouse.x) {
                 ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 120, 255, 0.04)';
+                ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 120, 255, 0.03)';
                 ctx.fill();
             }
             requestAnimationFrame(animate);
