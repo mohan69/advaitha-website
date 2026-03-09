@@ -146,7 +146,6 @@
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         
-        // Visual feedback: Change button text during "Observation"
         submitBtn.innerText = "Collapsing Potential...";
         submitBtn.disabled = true;
 
@@ -160,16 +159,20 @@
             });
 
             if (response.ok) {
+                // Success State
                 form.style.display = "none";
                 successMsg.style.display = "block";
                 successMsg.scrollIntoView({ behavior: 'smooth' });
             } else {
-                throw new Error('Formspree rejection');
+                // Specific error handling for "Form Not Found"
+                const result = await response.json();
+                throw new Error(result.error || "Connection error");
             }
         } catch (error) {
-            // Fallback: If AJAX fails, try the standard browser submission
-            console.log("AJAX failed, trying standard post...");
-            form.submit(); 
+            console.error("Submission error:", error);
+            alert("The connection to the Audit server is still being initialized. Please ensure your Form ID is correct or email mohan@rightsense.in.");
+            submitBtn.innerText = "Begin the Audit";
+            submitBtn.disabled = false;
         }
     });
 
