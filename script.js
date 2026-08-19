@@ -1,34 +1,46 @@
-// Quantum Canvas: The Observer Effect (Behind the content)
-const canvas = document.getElementById('quantumCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const toggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-let mouse = { x: null, y: null };
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
-});
+if (toggle && navLinks) {
+  toggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (mouse.x) {
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 150, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 110, 255, 0.035)'; // Subtle "Manifestation" light
-        ctx.fill();
-    }
-    requestAnimationFrame(animate);
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 }
-animate();
 
-// Mobile Navigation: Collapsing the menu wave
-const navLinks = document.getElementById('navLinks');
-const toggleBtn = document.getElementById('mobileMenuToggle');
+const form = document.querySelector('[data-assessment-form]');
+const success = document.querySelector('[data-form-success]');
 
-function toggleMenu() {
-    if (window.innerWidth <= 768) {
-        navLinks.classList.toggle('active');
-        toggleBtn.classList.toggle('active'); // Rotates hamburger to X (CSS needed)
+if (form && success) {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = form.querySelector('button[type="submit"]');
+    const original = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Submitting…';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      form.reset();
+      success.style.display = 'block';
+      success.focus();
+    } catch (error) {
+      window.location.href = 'mailto:mohan@rightsense.in?subject=Advaitha%20Executive%20AI%20Assessment';
+    } finally {
+      button.disabled = false;
+      button.textContent = original;
     }
+  });
 }
