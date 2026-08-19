@@ -94,6 +94,8 @@ img { max-width: 100%; }
   font-weight: 550;
 }
 .nav-links a:hover { color: var(--accent); }
+.nav-links a.btn-primary { color: #fff; }
+.nav-links a.btn-primary:hover { color: #fff; }
 .menu-toggle {
   display: none;
   border: 0;
