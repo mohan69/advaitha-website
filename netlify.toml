@@ -18,6 +18,11 @@
   to = "/contact.html"
   status = 200
 
+[[redirects]]
+  from = "/commodity-trading"
+  to = "/commodity-trading.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

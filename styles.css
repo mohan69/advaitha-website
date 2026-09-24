@@ -165,6 +165,31 @@ img { max-width: 100%; }
   font-size: clamp(1.08rem, 2vw, 1.3rem);
   margin-top: 26px;
 }
+.ctrm-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 104px 0 76px;
+  color: #fff;
+  background-color: #102a4c;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 55% at 50% 25%, rgba(47,96,245,.28) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 35%, rgba(14,165,164,.18) 0%, transparent 60%),
+    linear-gradient(180deg, #16365f 0%, #102a4c 60%, #0c1f3a 100%);
+  background-size: 48px 48px, 48px 48px, auto;
+}
+.ctrm-hero::after { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(47,96,245,.2), transparent 68%); top: -180px; right: -120px; pointer-events: none; }
+.ctrm-hero .container { position: relative; z-index: 1; }
+.ctrm-hero .eyebrow { color: #dbe6f4; }
+.ctrm-hero h1 { font-size: clamp(2.75rem, 6vw, 5.35rem); line-height: .99; letter-spacing: -.045em; max-width: 980px; margin-top: 22px; }
+.ctrm-hero .hero-copy { max-width: 770px; color: #dbe6f4; font-size: clamp(1.08rem, 2vw, 1.3rem); margin-top: 20px; }
+.definition { margin-top: 18px; color: #9db5c9; font-size: .98rem; }
+.definition strong { color: #fff; }
+.ctrm-proof { margin-top: 54px; border-top: 1px solid rgba(255,255,255,.17); border-bottom: 1px solid rgba(255,255,255,.17); }
+.ctrm-proof .proof-item { border-color: rgba(255,255,255,.17); }
+.ctrm-proof .proof-item strong { color: #fff; }
+.ctrm-proof .proof-item span { color: #b8cad8; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .btn {
   display: inline-flex;
